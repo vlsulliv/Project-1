@@ -6,6 +6,6 @@ Translate Api -https://english.api.rakuten.net/googlecloud/api/google-translate1
 
 *Assignments as of now*
 Chris and Chamo are working on HTML CSS and Bootstrap
-Stephanie is working on Readme. spoonacular.
-Damien is working on JavaScript 
-Vincent is working on google api and if we have time Thursday(** MongoDB** try and connect to a database) .
+Stephanie is working on Readme. and Spoonacular.
+Damien is working on JavaScript and looking into class activity's for resources
+Vincent is working on Google Api and if we have time Thursday(** MongoDB** try and connect to a database) .
