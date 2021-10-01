@@ -1,0 +1,11 @@
+Our idea thus far!
+Api for food recipes biased on what the user currently has available in their kitchen and im multiple languages.
+Food Api -https://spoonacular.com/food-api
+2nd Api translates in multiple languages using Google Translate Api.
+Translate Api -https://english.api.rakuten.net/googlecloud/api/google-translate1?endpoint=apiendpoint_1fa880dc-2f35-4373-85b4-06298a69d1c6
+
+*Assignments as of now*
+Chris and Chamo are working on HTML CSS and Bootstrap
+Stephanie is working on Readme. spoonacular.
+Damien is working on JavaScript 
+Vincent is working on google api and if we have time Thursday(** MongoDB** try and connect to a database) .
