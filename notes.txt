@@ -9,3 +9,21 @@ Chris and Chamo are working on HTML CSS and Bootstrap
 Stephanie is working on Readme. and Spoonacular.
 Damien is working on JavaScript and looking into class activity's for resources
 Vincent is working on Google Api and if we have time Thursday(** MongoDB** try and connect to a database) .
+
+*Spoonacular api maybe's*
+Search recipes by ingredients
+get recipe information
+maybe get recipe information bulk
+maybe autocomplete recipe search
+get recipes ingredient list
+get analyzed recipe instructions
+classify cuisine
+maybe analyze recipe search query
+ingredient search
+convert amounts
+maybe parse ingredients
+maybe glycemic load
+auto complete ingrdient search
+get ingredient substitutes
+meal type
+diet 
