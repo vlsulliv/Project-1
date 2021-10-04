@@ -1,0 +1,46 @@
+:root {
+    --dark-green: #067302;
+    --light-green: #19A603;
+    --carrot: #F26D3D;
+    --tomato: #F23005;
+    --gray: #F2F2F2;
+}
+
+* {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+body {
+    background-color: var(--light-green);
+    color: var(--gray);
+}
+
+nav {
+    background-color: var(--carrot);
+}
+
+.appLogo {
+    font-family: 'Marck Script';
+    margin-left: 10px;
+    /* font-family: 'Vibur', cursive; */
+}
+
+.ourInputCard {
+    background-color: var(--dark-green);
+}
+
+.ourRecipeCards {
+    background-color: var(--tomato);
+}
+
+#linkToRecipe {
+    text-decoration: none;
+    color: var(--gray);
+    font-weight: bold;
+}
+
+.card .card-reveal {
+    background-color: var(--carrot);
+    color: var(--gray);
+    font-size: 1.25rem;
+}
