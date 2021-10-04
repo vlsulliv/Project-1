@@ -28,7 +28,7 @@ for css lay outs and designs.
 - Loading screen (loading wheel (food))
 dribbble.com 'Foodie Maryam Loading-1'
 
-- Nav bar 
+- Nav bar : Mobile nav bar: hamburger nav bar
 
 - a copy right at the footer. 
 
@@ -59,3 +59,17 @@ auto complete ingrdient search
 get ingredient substitutes
 meal type
 diet 
+
+--------------------------------------------
+Sunday Oct 3, 2021 Meeting
+
+layout for desktop designed
+working on mobile design
+
+Day 1 basic desing get elements we need from materializecss
+get skeleton up, get scripts linked, 
+Day 2 get display working, responsive
+day 3 put everything together, possibly put in extra add ins we want 
+day 4 Do touch ups 
+
+
