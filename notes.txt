@@ -84,3 +84,10 @@ CSS & HTML END
 
 having trouble with carousal might use slideshow so we have responsive layout
 might have to replace images with live images 
+
+Part 2
+
+CSS HTML end
+No longer doing carousal going with Card Reaveal
+
+Lesson : When we struggle for 15mins Ask MEGAN!!
