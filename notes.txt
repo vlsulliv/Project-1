@@ -71,5 +71,16 @@ get skeleton up, get scripts linked,
 Day 2 get display working, responsive
 day 3 put everything together, possibly put in extra add ins we want 
 day 4 Do touch ups 
+-----------------------------------------------
+Monday Oct 4,2021
 
+Chamo & Christopher working on css html and layout 
+Vince Damien & Stephanie workig on JS API's 
 
+Add in subsitutes for ingredients if we have time on Thursday
+Good array isnt working the way we want go back if we have time to add fiber, calcium, and iron
+
+CSS & HTML END
+
+having trouble with carousal might use slideshow so we have responsive layout
+might have to replace images with live images 
