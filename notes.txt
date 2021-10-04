@@ -9,3 +9,67 @@ Chris and Chamo are working on HTML CSS and Bootstrap
 Stephanie is working on Readme. and Spoonacular.
 Damien is working on JavaScript and looking into class activity's for resources
 Vincent is working on Google Api and if we have time Thursday(** MongoDB** try and connect to a database) .
+
+-----------------------------------------------------------
+
+**Post saturday Meetup 10/2/21!**
+
+
+-Since we cant use bootstrap lets Use https://materializecss.com/ 
+for css lay outs and designs. 
+
+- a Auto complete (input form) https://materializecss.com/ (example: User types in Egg. Auto complete puts out "Eggs")
+
+-Steph Suggested we use screen castify to make a gif . 
+ on how to api works.
+
+-use a carousel to display meal options with current ingredients.
+
+- Loading screen (loading wheel (food))
+dribbble.com 'Foodie Maryam Loading-1'
+
+- Nav bar : Mobile nav bar: hamburger nav bar
+
+- a copy right at the footer. 
+
+- only fetch the top 25 results (user wont scroll thru 50 options)
+
+- Use Switch for light mode and Dark mode. 
+
+-IF we have time use a carousel to home screen of user favorite meals used thus far
+
+- (Future use) Check boxes or Switches (ie. user food allergy's)
+
+-----------------------------------------------------------
+
+*Spoonacular api maybe's*
+Search recipes by ingredients
+get recipe information
+maybe get recipe information bulk
+maybe autocomplete recipe search
+get recipes ingredient list
+get analyzed recipe instructions
+classify cuisine
+maybe analyze recipe search query
+ingredient search
+convert amounts
+maybe parse ingredients
+maybe glycemic load
+auto complete ingrdient search
+get ingredient substitutes
+meal type
+diet 
+
+--------------------------------------------
+Sunday Oct 3, 2021 Meeting
+
+layout for desktop designed
+working on mobile design
+
+Day 1 basic desing get elements we need from materializecss
+get skeleton up, get scripts linked, 
+Day 2 get display working, responsive
+day 3 put everything together, possibly put in extra add ins we want 
+day 4 Do touch ups 
+
+
