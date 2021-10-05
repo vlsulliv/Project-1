@@ -17,12 +17,40 @@ var autoCompleteAPI = `https://api.spoonacular.com/food/ingredients/autocomplete
 // 		}
 // 	}
 // });
+document.addEventListener("DOMContentLoaded", function () {
+    const inputField = document.querySelector(".autocomplete");
+
+    var instances = M.Autocomplete.init(inputField, {
+        data: {
+            // null values are display icons. We can add later.
+            Google: null,
+            Yahoo: null,
+            Youtube: null,
+            OstonCode: null,
+        },
+        limit: 10,
+        minLength: 1,
+    });
+});
+
+var generateBtn = document.getElementById("generate-recipe");
+var autocompleteInput = document.getElementById("autocomplete-input");
+var submitBtn = document.getElementById("searchBtn");
+var userInputArray = [];
+
+submitBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    console.log(autocompleteInput.value);
+    userInputArray.push(autocompleteInput.value);
+    console.log(userInputArray);
+    autocompleteInput.value = "";
+});
 
 // call autocomplete function
 autoCompleteApiCall();
 
-var autoCompleteListItem = [];
 // function to generate an array of autocomplete list items
+var autoCompleteListItem = [];
 function autoCompleteApiCall() {
     fetch(autoCompleteAPI)
         .then(function (response) {
@@ -40,63 +68,69 @@ function autoCompleteApiCall() {
 }
 
 // temporary hard-code for ingredients
-var ingredients = [
-    "apples",
-    "flour",
-    "sugar",
-    "beef broth",
-    "pork tenderloin",
-    "sweet potatoes",
-    "pot roast",
-];
+// var ingredients = [
+//     "apples",
+//     "flour",
+//     "sugar",
+//     "beef broth",
+//     "pork tenderloin",
+//     "sweet potatoes",
+//     "pot roast",
+// ];
 // define recipe results and individual ingredients
 var individual_ingredients = "";
 var recipeResults = [];
 
-// build individual ingredients query string
-for (var i = 0; i < ingredients.length; i++) {
-    if (i === 0) {
-        individual_ingredients = individual_ingredients + ingredients[i];
-    } else {
-        individual_ingredients = individual_ingredients + ",+" + ingredients[i];
+function buildIngredientsQuery() {
+    // build individual ingredients query string
+    for (var i = 0; i < userInputArray.length; i++) {
+        if (i === 0) {
+            individual_ingredients = individual_ingredients + userInputArray[i];
+        } else {
+            individual_ingredients =
+                individual_ingredients + ",+" + userInputArray[i];
+        }
     }
+    console.log(individual_ingredients);
 }
-console.log(individual_ingredients);
 
-// create dynamic recipe by ingredient api call
-var recipeByIngredient = `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${individual_ingredients}&number=20&apiKey=${apiKey}&ranking=2`;
+generateBtn.addEventListener("click", generateRecipes);
+function generateRecipes() {
+    // create dynamic recipe by ingredient api call
+    var recipeByIngredient = `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${individual_ingredients}&number=20&apiKey=${apiKey}&ranking=2`;
 
-fetch(recipeByIngredient)
-    .then(function (response) {
-        return response.json();
-    })
-    .then(function (data) {
-        // console.log(data);
-        // accessing recipes in returned array of data
-        for (var key in data) {
-            console.log(data[`${key}`]);
-            // if there are no missing ingredients
-            if (data[`${key}`].missedIngredientCount === 0) {
-                // get each potential recipe from api data
-                var potentialRecipe = data[`${key}`];
-                console.log(potentialRecipe.title);
-                // push result onto an array
-                recipeResults.push(potentialRecipe);
+    fetch(recipeByIngredient)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            // console.log(data);
+            // accessing recipes in returned array of data
+            for (var key in data) {
+                console.log(data[`${key}`]);
+                // if there are no missing ingredients
+                if (data[`${key}`].missedIngredientCount === 0) {
+                    // get each potential recipe from api data
+                    var potentialRecipe = data[`${key}`];
+                    console.log(potentialRecipe.title);
+                    // push result onto an array
+                    recipeResults.push(potentialRecipe);
+                }
             }
-        }
-        // loop through the array of results
-        for (var i = 0; i < recipeResults.length; i++) {
-            // get recipe item/object
-            var recipeItem = recipeResults[i];
-            // extract recipe ID for nutrition info
-            var recipeID = recipeItem.id;
-            // call nutrition info function with recipe ID parameter
-            console.log(recipeID);
-            recipeNutritionInfo(recipeID);
-        }
-    });
+            // loop through the array of results
+            for (var i = 0; i < recipeResults.length; i++) {
+                // get recipe item/object
+                var recipeItem = recipeResults[i];
+                // extract recipe ID for nutrition info
+                var recipeID = recipeItem.id;
+                // call nutrition info function with recipe ID parameter
+                console.log(recipeID);
+                recipeNutritionInfo(recipeID);
+            }
+        });
 
-console.log(recipeResults);
+    console.log(recipeResults);
+}
 
 // create function to display nutrition information for each recipe
 function recipeNutritionInfo(ID) {
