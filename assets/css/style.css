@@ -44,3 +44,14 @@ nav {
     color: var(--gray);
     font-size: 1.25rem;
 }
+
+#banner {
+    background-image: url("../images/nick-fewings-gpP-OkJ5BbI-unsplash.jpg"); 
+    height: 300px;  
+    background-size: cover;
+    background-position: top;
+}
+
+.card-image {
+    height: 200px;
+}
