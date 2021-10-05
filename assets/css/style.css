@@ -1,57 +1,57 @@
 :root {
-    --dark-green: #067302;
-    --light-green: #19A603;
-    --carrot: #F26D3D;
-    --tomato: #F23005;
-    --gray: #F2F2F2;
+  --dark-green: #067302;
+  --light-green: #19a603;
+  --carrot: #f26d3d;
+  --tomato: #f23005;
+  --gray: #f2f2f2;
 }
 
 * {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
 body {
-    background-color: var(--light-green);
-    color: var(--gray);
+  background-color: var(--light-green);
+  color: var(--gray);
 }
 
 nav {
-    background-color: var(--carrot);
+  background-color: var(--tomato);
 }
 
 .appLogo {
-    font-family: 'Marck Script';
-    margin-left: 10px;
-    /* font-family: 'Vibur', cursive; */
+  font-family: "Marck Script";
+  margin-left: 10px;
+  /* font-family: 'Vibur', cursive; */
 }
 
 .ourInputCard {
-    background-color: var(--dark-green);
+  background-color: var(--dark-green);
 }
 
 .ourRecipeCards {
-    background-color: var(--tomato);
+  background-color: var(--carrot);
 }
 
 #linkToRecipe {
-    text-decoration: none;
-    color: var(--gray);
-    font-weight: bold;
+  text-decoration: none;
+  color: var(--gray);
+  font-weight: bold;
 }
-
+/* we can change background to white and text color to black to look more like a normal Nutrition value chart */
 .card .card-reveal {
-    background-color: var(--carrot);
-    color: var(--gray);
-    font-size: 1.25rem;
+  background-color: white;
+  color: black;
+  font-size: 1.25rem;
 }
 
 #banner {
-    background-image: url("../images/nick-fewings-gpP-OkJ5BbI-unsplash.jpg"); 
-    height: 300px;  
-    background-size: cover;
-    background-position: top;
+  background-image: url("../images/nick-fewings-gpP-OkJ5BbI-unsplash.jpg");
+  height: 300px;
+  background-size: cover;
+  background-position: top;
 }
 
 .card-image {
-    height: 200px;
+  height: 200px;
 }
