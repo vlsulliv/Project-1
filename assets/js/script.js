@@ -17,10 +17,12 @@ var autoCompleteAPI = `https://api.spoonacular.com/food/ingredients/autocomplete
 // 		}
 // 	}
 // });
+// this is the ingredient autocomplete event listener from spoonacular
 document.addEventListener("DOMContentLoaded", function () {
     const inputField = document.querySelector(".autocomplete");
 
     var instances = M.Autocomplete.init(inputField, {
+        // we need to make this data dynamic
         data: {
             // null values are display icons. We can add later.
             Google: null,
@@ -32,17 +34,20 @@ document.addEventListener("DOMContentLoaded", function () {
         minLength: 1,
     });
 });
-
+// get main elements from HTML based on their id
 var generateBtn = document.getElementById("generate-recipe");
 var autocompleteInput = document.getElementById("autocomplete-input");
 var submitBtn = document.getElementById("searchBtn");
+// create empty array to hold user input values
 var userInputArray = [];
-
+// add event listener to submit button
 submitBtn.addEventListener("click", function (e) {
     e.preventDefault();
     console.log(autocompleteInput.value);
+    // push user input value onto user input array
     userInputArray.push(autocompleteInput.value);
     console.log(userInputArray);
+    // reseting value of user input box
     autocompleteInput.value = "";
 });
 
@@ -80,11 +85,12 @@ function autoCompleteApiCall() {
 // define recipe results and individual ingredients
 var individual_ingredients = "";
 var recipeResults = [];
-
+ // build individual ingredients query string
 function buildIngredientsQuery() {
-    // build individual ingredients query string
+    // loop through the array of user input values
     for (var i = 0; i < userInputArray.length; i++) {
         if (i === 0) {
+            //add individual ingredient to query string for api call
             individual_ingredients = individual_ingredients + userInputArray[i];
         } else {
             individual_ingredients =
@@ -93,7 +99,7 @@ function buildIngredientsQuery() {
     }
     console.log(individual_ingredients);
 }
-
+// add event listener for generate button 
 generateBtn.addEventListener("click", generateRecipes);
 function generateRecipes() {
     // create dynamic recipe by ingredient api call
