@@ -16,7 +16,7 @@ body {
 }
 
 nav {
-  background-color: var(--carrot);
+  background-color: var(--tomato);
 }
 
 .appLogo {
@@ -30,7 +30,7 @@ nav {
 }
 
 .ourRecipeCards {
-  background-color: var(--tomato);
+  background-color: var(--carrot);
 }
 
 #linkToRecipe {
@@ -38,10 +38,10 @@ nav {
   color: var(--gray);
   font-weight: bold;
 }
-
+/* we can change background to white and text color to black to look more like a normal Nutrition value chart */
 .card .card-reveal {
-  background-color: var(--carrot);
-  color: var(--gray);
+  background-color: white;
+  color: black;
   font-size: 1.25rem;
 }
 
