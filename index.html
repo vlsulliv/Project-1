@@ -1,89 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- google fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Vibur&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+        />
+        <link rel="stylesheet" href="assets/css/style.css" />
+        <title>Project 1 - Recipe App</title>
+    </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- google fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Vibur&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
-  <link rel="stylesheet" href="assets/css/style.css" />
-  <title>Project 1 - Recipe App</title>
-</head>
+    <body>
+        <div class="navbar-fixed ourNavBar">
+            <nav>
+                <div class="nav-wrapper">
+                    <a href="#!" class="brand-logo appLogo"
+                        >Dynamite Recipes!</a
+                    >
+                    <a
+                        href="#"
+                        data-target="mobile-demo"
+                        class="sidenav-trigger"
+                        ><i class="material-icons">menu</i></a
+                    >
+                    <ul class="right hide-on-med-and-down">
+                        <li><a href="sass.html">Sass</a></li>
+                        <li><a href="badges.html">Components</a></li>
+                        <li><a href="collapsible.html">Javascript</a></li>
+                        <li><a href="mobile.html">Mobile</a></li>
+                    </ul>
+                </div>
+            </nav>
 
-<body>
-  <div class="navbar-fixed ourNavBar">
-    <nav>
-      <div class="nav-wrapper">
-        <a href="#!" class="brand-logo appLogo">Dynamite Recipes!</a>
-        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-        <ul class="right hide-on-med-and-down">
-          <li><a href="sass.html">Sass</a></li>
-          <li><a href="badges.html">Components</a></li>
-          <li><a href="collapsible.html">Javascript</a></li>
-          <li><a href="mobile.html">Mobile</a></li>
-        </ul>
-      </div>
-    </nav>
-
-    <ul class="sidenav" id="mobile-demo">
-      <li><a href="sass.html">Sass</a></li>
-      <li><a href="badges.html">Components</a></li>
-      <li><a href="collapsible.html">Javascript</a></li>
-      <li><a href="mobile.html">Mobile</a></li>
-    </ul>
-  </div>
-  <div id="banner"></div>
-  <div class="row">
-    <div class="col s12 m5">
-      <div class="card-panel ourInputCard">
-        <span class="white-text">I am a very simple card. I am good at containing small bits of information.
-          I am convenient because I require little markup to use effectively. I am similar to what is called a panel in
-          other frameworks.
-        </span>
-        <div class="row">
-          <div class="col s12">
-            <div class="row">
-              <div class="input-field col s12">
-                <i class="material-icons prefix"></i>
-                <input type="text" id="autocomplete-input" class="autocomplete"
-                  placeholder="ex: eggs, milk, chicken, ect." />
-                <!-- <label for="autocomplete-input"></label> -->
-              </div>
-            </div>
-          </div>
+            <ul class="sidenav" id="mobile-demo">
+                <li><a href="sass.html">Sass</a></li>
+                <li><a href="badges.html">Components</a></li>
+                <li><a href="collapsible.html">Javascript</a></li>
+                <li><a href="mobile.html">Mobile</a></li>
+            </ul>
         </div>
-      </div>
-    </div>
-  </div>
+        <div id="banner"></div>
+        <div class="row">
+            <div class="col s12 m5">
+                <div class="card-panel ourInputCard">
+                    <span class="white-text"
+                        >I am a very simple card. I am good at containing small
+                        bits of information. I am convenient because I require
+                        little markup to use effectively. I am similar to what
+                        is called a panel in other frameworks.
+                    </span>
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix"></i>
+                                    <input
+                                        type="text"
+                                        id="autocomplete-input"
+                                        class="autocomplete"
+                                        placeholder="ex: eggs, milk, chicken, ect."
+                                    />
+                                    <!-- <label for="autocomplete-input"></label> -->
+                                    <button
+                                        class="btn waves-effect waves-light"
+                                        type="submit"
+                                        name="action"
+                                        id="searchBtn"
+                                    >
+                                        <i class="material-icons center"
+                                            >Submit ingredients</i
+                                        >
+                                    </button>
+                                    <button
+                                        class="btn waves-effect waves-light"
+                                        type="submit"
+                                        name="action"
+                                        id="generate-recipe"
+                                    >
+                                        <i class="material-icons center"
+                                            >generate recipe</i
+                                        >
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <div class="card ourRecipeCards">
+            <div class="card-image waves-effect waves-block waves-light">
+                <img
+                    class="activator"
+                    src="https://thumbs.dreamstime.com/b/healthy-food-background-fruits-vegetables-cereal-nuts-superfood-dietary-balanced-vegetarian-eating-products-kitchen-143677456.jpg"
+                />
+            </div>
+            <div class="card-content">
+                <span class="card-title activator"
+                    >Card Title<i class="material-icons right">more</i></span
+                >
+                <p><a href="#" id="linkToRecipe">This is a link</a></p>
+            </div>
+            <div class="card-reveal">
+                <span class="card-title"
+                    >Card Title<i class="material-icons right">close</i></span
+                >
+                <p>
+                    Here is some more information about this product that is
+                    only revealed once clicked on.
+                </p>
+            </div>
+        </div>
+        <br />
+        <!--Test for image slide-->
 
-  <div class="card ourRecipeCards">
-    <div class="card-image waves-effect waves-block waves-light">
-      <img class="activator" src="https://thumbs.dreamstime.com/b/healthy-food-background-fruits-vegetables-cereal-nuts-superfood-dietary-balanced-vegetarian-eating-products-kitchen-143677456.jpg" />
-    </div>
-    <div class="card-content">
-      <span class="card-title activator">Card Title<i
-          class="material-icons right">more</i></span>
-      <p><a href="#" id="linkToRecipe">This is a link</a></p>
-    </div>
-    <div class="card-reveal">
-      <span class="card-title">Card Title<i class="material-icons right">close</i></span>
-      <p>
-        Here is some more information about this product that is only revealed
-        once clicked on.
-      </p>
-    </div>
-  </div>
-  <br />
-  <!--Test for image slide-->
-
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script src="./assets/js/matieralize.js"></script>
-</body>
-
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="./assets/js/script.js"></script>
+    </body>
 </html>
