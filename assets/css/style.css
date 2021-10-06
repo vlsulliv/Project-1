@@ -68,3 +68,22 @@ ul#cardFooter {
     padding: 15px;
     align-items: center;
 }
+
+container#userIngridients {
+  flex-wrap: wrap;
+  /* margin: 50px;
+  padding: 50px; */
+  /* border: double; */
+  /* position: relative; left: 550px; bottom: 250px; */
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.chip {
+  margin: 20px;
+
+}
+
+.close {
+color: red;
+}
