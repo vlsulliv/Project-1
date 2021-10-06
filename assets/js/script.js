@@ -1,12 +1,15 @@
 // get API key from spoonacular
 var apiKey = "26555838e1c640c8909140566fd58a8e";
 // get main elements from HTML based on their id
-var ingredientsBox = document.getElementById("ingredients");
+var ingredientsBox = document.getElementById("userIngredients");
 var generateBtn = document.getElementById("generate-recipe");
 var autocompleteInput = document.getElementById("autocomplete-input");
 var submitBtn = document.getElementById("searchBtn");
+var ourRecipeCards = document.getElementById("ourRecipeCards")
 // declare global variables
 var autoCompleteListItem, search_value, obj;
+var calories, carbs, fat, protein, satFat, sugar, sodium, recipeImgURL, recipeTitle, usedIngredientsArray;
+var sourceURL, sourceName, recipeSummary, recipeInstr, recipeTime;
 // define recipe results and individual ingredients
 var individual_ingredients = "";
 var recipeResults = [];
@@ -20,12 +23,13 @@ submitBtn.addEventListener("click", function (e) {
     userInputArray.push(autocompleteInput.value);
     console.log(userInputArray);
     // resetting value of user input box
-    var ingredientsBtn = document.createElement("button");
+    var ingredientsBtn = document.createElement("div");
     ingredientsBtn.textContent = autocompleteInput.value;
-    ingredientsBtn.setAttribute(
-        "style",
-        "width: 50px; height: 25px; color: white; background-color: red"
-    );
+    ingredientsBtn.setAttribute("class", "chip");
+	var closeIcon = document.createElement('i');
+	closeIcon.setAttribute("class", "close material-icons");
+	closeIcon.textContent = "delete_forever";
+	ingredientsBtn.appendChild(closeIcon);
     ingredientsBox.appendChild(ingredientsBtn);
     autocompleteInput.value = "";
 });
@@ -88,10 +92,11 @@ autocompleteInput.addEventListener("keyup", function () {
 });
 // add event listener for generate button
 generateBtn.addEventListener("click", generateRecipes);
+
 function generateRecipes() {
     buildIngredientsQuery();
     // create dynamic recipe by ingredient api call
-    var recipeByIngredient = `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${individual_ingredients}&number=20&apiKey=${apiKey}&ranking=2`;
+    var recipeByIngredient = `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${individual_ingredients}&number=10&apiKey=${apiKey}&ranking=2`;
     // fetch the recipe based on ingredients from API
     fetch(recipeByIngredient)
         .then(function (response) {
@@ -114,9 +119,15 @@ function generateRecipes() {
             console.log(recipeResults);
             for (var i = 0; i < recipeResults.length; i++) {
                 console.log(recipeResults[i]);
+				// img url
                 console.log(recipeResults[i].image);
+				recipeImgURL = recipeResults[i].image;
+				// title of recipe
                 console.log(recipeResults[i].title);
+				recipeTitle = recipeResults[i].title;
+				// array of the ingredients used in recipe
                 console.log(recipeResults[i].usedIngredients);
+				usedIngredientsArray = recipeResults[i].usedIngredients;
             }
             // loop through the array of results
             for (var i = 0; i < recipeResults.length; i++) {
@@ -130,7 +141,6 @@ function generateRecipes() {
             }
         });
 }
-
 // create function to display nutrition information for each recipe
 function recipeNutritionInfo(ID) {
     // dynamically access nutrition info API
@@ -142,21 +152,123 @@ function recipeNutritionInfo(ID) {
         })
         .then(function (data) {
             // get access to individual nutrition info data points of concern
-            console.log(data);
+            // console.log(data);
             console.log(data.calories);
+			calories = data.calories;
             console.log(data.carbs);
+			carbs = data.carbs;
             console.log(data.fat);
+			fat = data.fat;
             console.log(data.protein);
+			protein = data.protein;
+			// sat fat
             console.log(`${data.bad["2"].title}: ${data.bad["2"].amount}`);
+			satFat = data.bad["2"].amount;
+			// sugar
             console.log(`${data.bad["4"].title}: ${data.bad["4"].amount}`);
-            console.log(`${data.bad["6"].title}: ${data.bad["6"].amount}`);
+			sugar = data.bad["4"].amount;
+            // sodium
+			console.log(`${data.bad["6"].title}: ${data.bad["6"].amount}`);
+			sodium = data.bad["6"].amount;
+			getRecipeInstructions(ID);
             // console.log(`${data.good["15"].title}: ${data.good["15"].amount}`)
             // console.log(`${data.good["9"].title}: ${data.good["9"].amount}`)
             // console.log(`${data.good["18"].title}: ${data.good["18"].amount}`)
             // TODO - They have a "good" array of nutrition info including fiber, iron, etc. (if we want to do that later ... it's kinda complicated)
         });
 }
+
+function getRecipeInstructions(ID) {
+	var instrAPI = `https://api.spoonacular.com/recipes/${ID}/information?apiKey=${apiKey}`;
+	console.log(instrAPI);
+	fetch(instrAPI)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+			console.log(data);
+			// get source url
+			console.log(data.sourceUrl);
+			sourceURL = data.sourceUrl;
+			console.log(data.sourceName);
+			sourceName = data.sourceName;
+			console.log(data.summary);
+			recipeSummary = data.summary;
+			console.log(data.instructions);
+			recipeInstr = data.instructions;
+			console.log(data.readyInMinutes);
+			recipeTime = data.readyInMinutes;
+			// TODO - specify food allergies with this API call
+			displayRecipeCards();
+		})
+}
+// populate recipe cards
+function displayRecipeCards() {
+	// create div element for the from of the recipe card
+	var singleRecipeCard = document.createElement('div');
+	singleRecipeCard.setAttribute("class", "card");
+	// add inner HTML to use materialize components
+	singleRecipeCard.innerHTML = `
+		<div class="card-image waves-effect waves-block waves-light">
+			<div class="col s12 m5">
+				<img class="activator" src="${recipeImgURL}" />
+			</div>
+		</div>
+		<div class="card-content">
+			<span class="card-title activator">${recipeTitle}<i class="material-icons right">more_vert</i></span>
+			<p><a href="${sourceURL}" target="_blank" id="linkToRecipe">See Full Recipe On ${sourceName}</a></p>
+		</div>
+		<div class="card-reveal">
+			<span class="card-title">Nutritional Values<i class="material-icons right">close</i></span>
+			<table class="striped">
+				<thead>
+					<tr>
+					<th>Nutrition Facts</th>
+					<th>Amount</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Calories</td>
+						<td id="calVal">${calories}</td>
+					</tr>
+					<tr>
+						<td>Carbs</td>
+						<td id="carbVal">${carbs}</td>
+					</tr>
+					<tr>
+						<td>Fat</td>
+						<td id="fatVal">${fat}</td>
+					</tr>
+					<tr>
+						<td>SaturatedFat</td>
+						<td id="satFatVal">${satFat}</td>
+					</tr>
+					<tr>
+						<td>Protein</td>
+						<td id="proteinVal">${protein}</td>
+					</tr>
+					<tr>
+						<td>Sugar</td>
+						<td id="sugarVal">${sugar}</td>
+					</tr>
+					<tr>
+						<td>Sodium</td>
+						<td id="sodiumVal">${sodium}</td>
+					</tr>
+				</tbody>
+			</table>
+			<div>
+				<ul id="cardFooter">
+					<li class="prepTime">Estimated Prep + Cook Time: ${recipeTime}</li>
+					<li class="sourceName">Source: <a href="${sourceURL}" target="_blank">${sourceName}</a></li>
+				</ul>
+			</div>
+		</div>`
+		ourRecipeCards.appendChild(singleRecipeCard);
+}
 // api = '42753b9f905340ec9bec5c347c6f8ebd';
+
 
 // event listener from materialize that opens the side drawer
 document.addEventListener("DOMContentLoaded", function () {
