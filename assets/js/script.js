@@ -4,14 +4,11 @@ var apiKey = '26555838e1c640c8909140566fd58a8e';
 var generateBtn = document.getElementById('generate-recipe');
 var autocompleteInput = document.getElementById('autocomplete-input');
 var submitBtn = document.getElementById('searchBtn');
-
-var autoCompleteListItem;
-// practice search value
-var search_value;
+// declare global variables
+var autoCompleteListItem, search_value, obj;
 // define recipe results and individual ingredients
 var individual_ingredients = '';
 var recipeResults = [];
-
 // create empty array to hold user input values
 var userInputArray = [];
 // add event listener to submit button
@@ -21,16 +18,16 @@ submitBtn.addEventListener('click', function(e) {
 	// push user input value onto user input array
 	userInputArray.push(autocompleteInput.value);
 	console.log(userInputArray);
-	// reseting value of user input box
+	// resetting value of user input box
 	autocompleteInput.value = '';
 });
-var obj;
 // function to generate an array of autocomplete list items
 function autoCompleteApiCall(autoCompleteAPI) {
 	$.ajax({
 		url: autoCompleteAPI,
 		method: 'GET',
-        cache: true
+		// store API call into cache for quicker processing
+		cache: true
 	}).then(function(response) {
 		autoCompleteListItem = [];
 		// loop over data returned from autocomplete api
@@ -39,17 +36,20 @@ function autoCompleteApiCall(autoCompleteAPI) {
 			autoCompleteListItem.push(response[i].name);
 		}
 		console.log(autoCompleteListItem);
-        obj = autoCompleteListItem.reduce((a, v) => ({ ...a, [v]: null}), {}); 
-        var instances = M.Autocomplete.init(inputField, {
-            // we need to make this data dynamic
-            data: obj,
-            limit: 6,
-            minLength: 1
-        });
-        instances.open();
-        return instances;
+		obj = autoCompleteListItem.reduce((a, v) => ({ ...a, [v]: null }), {});
+		var instances = M.Autocomplete.init(inputField, {
+			// we need to make this data dynamic
+			data: obj,
+			// limit autocomplete results to 6 items
+			limit: 6,
+			// make sure at least one item is displayed if autocomplete is working
+			minLength: 1
+		});
+		// keep the autocomplete open for the user
+		instances.open();
+		// return instances object
+		return instances;
 	});
-
 }
 // build individual ingredients query string
 function buildIngredientsQuery() {
@@ -70,7 +70,9 @@ var autoCompleteOptions = [];
 // create key up event listener for autocomplete input
 autocompleteInput.addEventListener('keyup', function() {
 	console.log(autocompleteInput.value);
+	// set the search value to be the current autocomplete input's value
 	search_value = autocompleteInput.value;
+	// create query string for API call with search value and api key
 	var autoCompleteAPI = `https://api.spoonacular.com/food/ingredients/autocomplete?query=${search_value}&number=15&apiKey=${apiKey}`;
 	// call autocomplete function
 	autoCompleteApiCall(autoCompleteAPI);
@@ -80,7 +82,7 @@ generateBtn.addEventListener('click', generateRecipes);
 function generateRecipes() {
 	// create dynamic recipe by ingredient api call
 	var recipeByIngredient = `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${individual_ingredients}&number=20&apiKey=${apiKey}&ranking=2`;
-
+	// fetch the recipe based on ingredients from API
 	fetch(recipeByIngredient)
 		.then(function(response) {
 			return response.json();
@@ -139,4 +141,16 @@ function recipeNutritionInfo(ID) {
 			// TODO - They have a "good" array of nutrition info including fiber, iron, etc. (if we want to do that later ... it's kinda complicated)
 		});
 }
-api = '42753b9f905340ec9bec5c347c6f8ebd';
+// api = '42753b9f905340ec9bec5c347c6f8ebd';
+
+// event listener from materialize that opens the side drawer
+document.addEventListener('DOMContentLoaded', function() {
+	var elems = document.querySelectorAll('.sidenav');
+	var instances = M.Sidenav.init(elems);
+});
+
+// event listener for the dropdown
+document.addEventListener('DOMContentLoaded', function() {
+	var elems = document.querySelectorAll('.modal');
+	var instances = M.Modal.init(elems);
+});
