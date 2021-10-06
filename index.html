@@ -1,106 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!-- google fonts -->
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Vibur&display=swap"
-            rel="stylesheet"
-        />
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-        />
-        <link rel="stylesheet" href="assets/css/style.css" />
-        <title>Project 1 - Recipe App</title>
-    </head>
 
-    <body>
-        <div class="navbar-fixed ourNavBar">
-            <nav>
-                <div class="nav-wrapper">
-                    <a href="#!" class="brand-logo appLogo"
-                        >Dynamite Recipes!</a
-                    >
-                    <a
-                        href="#"
-                        data-target="mobile-demo"
-                        class="sidenav-trigger"
-                        ><i class="material-icons">menu</i></a
-                    >
-                    <ul class="right hide-on-med-and-down">
-                        <li><a href="">Find Random Recipes</a></li>
-                        <li><a href="">Make Grocery List</a></li>
-                        <!-- <li><a href="badges.html">Components</a></li>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Vibur&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <title>Project 1 - Recipe App</title>
+</head>
+
+<body>
+  <div class="navbar-fixed ourNavBar">
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#!" class="brand-logo appLogo">Dynamite Recipes!</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="">Find Random Recipes</a></li>
+          <li><a href="">Make Grocery List</a></li>
+          <!-- <li><a href="badges.html">Components</a></li>
           <li><a href="collapsible.html">Javascript</a></li>
           <li><a href="mobile.html">Mobile</a></li> -->
-                    </ul>
-                </div>
-            </nav>
+        </ul>
+      </div>
+    </nav>
 
-            <ul class="sidenav" id="mobile-demo">
-                <li><a href="">Find Random Recipes</a></li>
-                <li><a href="">Make Grocery List</a></li>
-                <!-- <li><a href="badges.html">Components</a></li>
+    <ul class="sidenav" id="mobile-demo">
+      <li><a href="">Find Random Recipes</a></li>
+      <li><a href="">Make Grocery List</a></li>
+      <!-- <li><a href="badges.html">Components</a></li>
       <li><a href="collapsible.html">Javascript</a></li>
       <li><a href="mobile.html">Mobile</a></li> -->
-            </ul>
-        </div>
-        <!--banner-->
-        <div id="banner"></div>
+    </ul>
+  </div>
+  <!--banner-->
+  <div id="banner"></div>
+  <div class="row">
+    <div class="col s12 m5">
+      <div class="card-panel ourInputCard">
+        <span class="white-text">I am a very simple card. I am good at containing small
+          bits of information. I am convenient because I require
+          little markup to use effectively. I am similar to what
+          is called a panel in other frameworks.
+        </span>
         <div class="row">
-            <div class="col s12 m5">
-                <div class="card-panel ourInputCard">
-                    <span class="white-text"
-                        >I am a very simple card. I am good at containing small
-                        bits of information. I am convenient because I require
-                        little markup to use effectively. I am similar to what
-                        is called a panel in other frameworks.
-                    </span>
-                    <div class="row">
-                        <div class="col s12">
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <i class="material-icons prefix"></i>
-                                    <input
-                                        type="text"
-                                        id="autocomplete-input"
-                                        class="autocomplete"
-                                        placeholder="ex: eggs, milk, chicken, ect."
-                                    />
-                                    <!-- <label for="autocomplete-input"></label> -->
-                                </div>
-                            </div>
-                            <button
-                                class="btn waves-effect waves-light"
-                                type="submit"
-                                name="action"
-                                id="searchBtn"
-                            >
-                                <i class="material-icons center"
-                                    >Submit ingredients</i
-                                >
-                            </button>
-                            <button
-                                class="btn waves-effect waves-light"
-                                type="submit"
-                                name="action"
-                                id="generate-recipe"
-                            >
-                                <i class="material-icons center"
-                                    >generate recipe</i
-                                >
-                            </button>
-                        </div>
-                    </div>
-                </div>
+          <div class="col s12">
+            <div class="row">
+              <div class="input-field col s12">
+                <i class="material-icons prefix"></i>
+                <input type="text" id="autocomplete-input" class="autocomplete"
+                  placeholder="ex: eggs, milk, chicken, ect." />
+                <!-- <label for="autocomplete-input"></label> -->
+              </div>
             </div>
             <button class="btn waves-effect waves-light" type="submit" name="action" id="searchBtn">
-              <i class=" center">Submit ingredients</i>
+              <i class="center">Submit ingredients</i>
             </button>
             <button class="btn waves-effect waves-light" type="submit" name="action" id="generate-recipe">
               <i class="center">generate recipe</i>
@@ -109,114 +69,20 @@
         </div>
       </div>
     </div>
-    <container id="userIngridients">
-      <div class="chip">
-        Test
-        <i class="close material-icons">x</i>
-      </div>
-      <div class="chip">
-        for science
-        <i class="close material-icons">x</i>
-      </div>
-      <div class="chip">
-        Tag
-        <i class="close material-icons">x</i>
-        </div>
-        <div class="chip">
-        Tag
-        <i class="close material-icons">x</i>
-      </div><div class="chip">
-        Tag
-        <i class="close material-icons">x</i>
-      </div><div class="chip">
-        Tag
-        <i class="close material-icons">delete_forever</i>
-        <i class="material-icons"></i>
-      </div>
-  
-    </container>
+    <div id="userIngredients">
+      <!-- Dynamically filled by JS -->
+    </div>
   </div>
-  
+  <div id="ourRecipeCards">
+    <!--  Dynamically populate recipe cards with JS -->
+  </div>
+  <br />
+  <!--Test for image slide-->
 
-  <div class="card ourRecipeCards">
-    <div class="card-image waves-effect waves-block waves-light">
-      <!-- <img
-            <div class="col s12 m5" id="ingredients"> </div>
-        </div>
-        <div class="card ourRecipeCards">
-            <div class="card-image waves-effect waves-block waves-light">
-                <!-- <img
-          class="activator"
-          src="https://thumbs.dreamstime.com/b/healthy-food-background-fruits-vegetables-cereal-nuts-superfood-dietary-balanced-vegetarian-eating-products-kitchen-143677456.jpg"
-        /> -->
-            </div>
-            <div class="card-content">
-                <span class="card-title activator"
-                    >Card Title<i class="material-icons right">more</i></span
-                >
-                <p><a href="#" id="linkToRecipe">This is a link</a></p>
-            </div>
-            <div class="card-reveal">
-                <!--Nutrition chart-->
-                <span class="card-title"
-                    >Nutritional Values<i class="material-icons right"
-                        >close</i
-                    ></span
-                >
-                <table class="striped">
-                    <thead>
-                        <tr>
-                            <th>Nutrition Facts</th>
-                            <th>Amount</th>
-                        </tr>
-                    </thead>
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="./assets/js/script.js"></script>
+</body>
 
-                    <tbody>
-                        <tr>
-                            <td>Calories</td>
-                            <td id="calVal">calVal</td>
-                        </tr>
-                        <tr>
-                            <td>Carbs</td>
-                            <td id="carbVal">carbVal</td>
-                        </tr>
-                        <tr>
-                            <td>Fat</td>
-                            <td id="fatVal">fatVal</td>
-                        </tr>
-                        <tr>
-                            <td>SaturatedFat</td>
-                            <td id="satFatVal">satFatVal</td>
-                        </tr>
-                        <tr>
-                            <td>Protein</td>
-                            <td id="proteinVal">proteinVal</td>
-                        </tr>
-                        <tr>
-                            <td>Sugar</td>
-                            <td id="sugarVal">sugarVal</td>
-                        </tr>
-                        <tr>
-                            <td>Sodium</td>
-                            <td id="sodiumVal">sodiumVal</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div>
-                    <ul id="cardFooter">
-                        <li class="prepTime">Estimated PrepTime:</li>
-                        <li class="cookTime">Cook Time:</li>
-                        <li class="preHeat">Preheat Temp:</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <br />
-        <!--Test for image slide-->
-
-        <!-- Compiled and minified JavaScript -->
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-        <script src="./assets/js/script.js"></script>
-    </body>
 </html>
