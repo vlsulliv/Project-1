@@ -29,7 +29,8 @@ var obj;
 function autoCompleteApiCall(autoCompleteAPI) {
 	$.ajax({
 		url: autoCompleteAPI,
-		method: 'GET'
+		method: 'GET',
+        cache: true
 	}).then(function(response) {
 		autoCompleteListItem = [];
 		// loop over data returned from autocomplete api
@@ -38,13 +39,14 @@ function autoCompleteApiCall(autoCompleteAPI) {
 			autoCompleteListItem.push(response[i].name);
 		}
 		console.log(autoCompleteListItem);
-        obj = autoCompleteListItem.reduce((a, v) => ({ ...a, [v]: null}), {}) 
+        obj = autoCompleteListItem.reduce((a, v) => ({ ...a, [v]: null}), {}); 
         var instances = M.Autocomplete.init(inputField, {
             // we need to make this data dynamic
             data: obj,
-            limit: 10,
+            limit: 6,
             minLength: 1
         });
+        instances.open();
         return instances;
 	});
 
@@ -66,7 +68,7 @@ function buildIngredientsQuery() {
 var inputField = document.querySelector('.autocomplete');
 var autoCompleteOptions = [];
 // create key up event listener for autocomplete input
-autocompleteInput.addEventListener('keypress', function() {
+autocompleteInput.addEventListener('keyup', function() {
 	console.log(autocompleteInput.value);
 	search_value = autocompleteInput.value;
 	var autoCompleteAPI = `https://api.spoonacular.com/food/ingredients/autocomplete?query=${search_value}&number=15&apiKey=${apiKey}`;
