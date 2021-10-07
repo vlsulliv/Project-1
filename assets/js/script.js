@@ -18,6 +18,14 @@ var individual_ingredients = "";
 var recipeResults = [];
 // create empty array to hold user input values
 var userInputArray = [];
+var userStorageArray = JSON.parse(localStorage.getItem("userIngredients"));
+
+if (userStorageArray !== null) {
+    userInputArray = userStorageArray;
+    for (var i = 0; i < userInputArray.length; i++){
+        populateIngredient(userInputArray[i]);
+    }
+}
 // add event listener to submit button
 submitBtn.addEventListener("click", function (e) {
     e.preventDefault();
@@ -25,17 +33,41 @@ submitBtn.addEventListener("click", function (e) {
     // push user input value onto user input array
     userInputArray.push(autocompleteInput.value);
     console.log(userInputArray);
+    // push on array of options it gives us users ingredients we want to store that arrray in local storage
+    localStorage.removeItem("userIngredients");
+    localStorage.setItem("userIngredients", JSON.stringify(userInputArray));
+    populateIngredient(autocompleteInput.value);
+    autocompleteInput.value = "";
+});
+
+function populateIngredient (ingredient) {
     // resetting value of user input box
     var ingredientsBtn = document.createElement("div");
-    ingredientsBtn.textContent = autocompleteInput.value;
     ingredientsBtn.setAttribute("class", "chip");
+    ingredientsBtn.setAttribute("style", "line-height: 7.5px;");
+    var paragraph = document.createElement("p");
+    paragraph.textContent = ingredient;
+    paragraph.setAttribute("style", "display:inline-block; ")
+    ingredientsBtn.appendChild(paragraph);
 	var closeIcon = document.createElement('i');
 	closeIcon.setAttribute("class", "close material-icons");
 	closeIcon.textContent = "delete_forever";
+    closeIcon.setAttribute("style", "display:inline-block");
+    closeIcon.addEventListener("click", function(event){
+        var newArray= [];
+        for (var element of userInputArray) {
+            console.log(event.target.parentElement.firstChild.textContent);
+            if (element !== event.target.parentElement.firstChild.textContent){
+                newArray.push(element);
+            }
+            localStorage.removeItem("userIngredients");
+            localStorage.setItem("userIngredients", JSON.stringify(newArray));
+        }
+    });
 	ingredientsBtn.appendChild(closeIcon);
     ingredientsBox.appendChild(ingredientsBtn);
-    autocompleteInput.value = "";
-});
+
+}
 // function to generate an array of autocomplete list items
 function autoCompleteApiCall(autoCompleteAPI) {
     $.ajax({
