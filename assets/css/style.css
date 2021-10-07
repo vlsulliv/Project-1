@@ -22,12 +22,19 @@ nav {
 .appLogo {
   font-family: "Marck Script";
   margin-left: 10px;
+  width: 500px;
+  margin-left: 150px;
   /* font-family: 'Vibur', cursive; */
+}
+
+@media screen and (min-width: 993px) {
+  .appLogo {
+    margin-left: 50px;
+  }
 }
 
 .ourInputCard {
   background-color: var(--dark-green);
-  
 }
 
 .ourRecipeCards {
@@ -60,26 +67,24 @@ nav {
   display: inline-block;
   margin-left: 80px;
   margin-top: 14px;
-
 }
-
 
 .card-image {
   max-width: 302px;
   max-height: 200px;
 }
 
-ul#cardFooter li{
+ul#cardFooter li {
   display: inline;
   margin-left: 16px;
   /* padding: 100px; */
 }
 
 ul#cardFooter {
-    border: solid 5px #000000;
-    font-size: 15px;
-    padding: 15px;
-    align-items: center;
+  border: solid 5px #000000;
+  font-size: 15px;
+  padding: 15px;
+  align-items: center;
 }
 
 container#userIngridients {
@@ -94,14 +99,13 @@ container#userIngridients {
 
 .chip {
   margin: 20px;
-
 }
 
 .close {
-color: red;
+  color: red;
 }
 
-.card-content{
+.card-content {
   background-color: var(--tomato);
 }
 
@@ -109,7 +113,6 @@ color: red;
   margin-top: 15px;
   margin-left: 25px;
   background-color: var(--tomato);
-
 }
 
 #searchBtn {

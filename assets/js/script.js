@@ -1,6 +1,7 @@
 // get API key from spoonacular
-var apiKey1 = "26555838e1c640c8909140566fd58a8e";
-var apiKey = "05cf9b96da3f4148be6fb375f52b09f7";
+// var apiKey = "26555838e1c640c8909140566fd58a8e";
+// var apiKey = "05cf9b96da3f4148be6fb375f52b09f7";
+var apiKey = "4a6a04aea236416ab98658ba50b78531";
 
 // get main elements from HTML based on their id
 var ingredientsBox = document.getElementById("userIngredients");
@@ -90,6 +91,7 @@ autocompleteInput.addEventListener("keyup", function () {
     // create query string for API call with search value and api key
     var autoCompleteAPI = `https://api.spoonacular.com/food/ingredients/autocomplete?query=${search_value}&number=15&apiKey=${apiKey}`;
     // call autocomplete function
+	console.log(autoCompleteAPI);
     autoCompleteApiCall(autoCompleteAPI);
 });
 // add event listener for generate button
@@ -98,14 +100,14 @@ generateBtn.addEventListener("click", generateRecipes);
 function generateRecipes() {
     buildIngredientsQuery();
     // create dynamic recipe by ingredient api call
-    var recipeByIngredient = `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${individual_ingredients}&number=10&apiKey=${apiKey}&ranking=2`;
+    var recipeByIngredient = `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${individual_ingredients}&number=10&ranking=2&apiKey=${apiKey}`;
     // fetch the recipe based on ingredients from API
     fetch(recipeByIngredient)
         .then(function (response) {
             return response.json();
         })
         .then(function (data) {
-            // console.log(data);
+            console.log(data);
             // accessing recipes in returned array of data
             for (var key in data) {
                 console.log(data[`${key}`]);
@@ -118,6 +120,7 @@ function generateRecipes() {
                     recipeResults.push(potentialRecipe);
                 }
             }
+			// TODO - If we have time, show them recipes they are 1 item away from being able to make
             console.log(recipeResults);
             for (var i = 0; i < recipeResults.length; i++) {
                 console.log(recipeResults[i]);
@@ -206,6 +209,7 @@ function getRecipeInstructions(ID) {
 }
 // populate recipe cards
 function displayRecipeCards() {
+	ourRecipeCards.innerHTML = "";
 	// create div element for the from of the recipe card
 	var singleRecipeCard = document.createElement('div');
 	singleRecipeCard.setAttribute("class", "card");
