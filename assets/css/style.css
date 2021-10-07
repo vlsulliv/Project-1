@@ -114,14 +114,14 @@ container#userIngridients {
 
 #generate-recipe {
   margin-top: 15px;
-  margin-left: 25px;
+  /* margin-left: 25px; */
   background-color: var(--tomato);
   box-shadow: 10px 5px 5px black;
 }
 
 #searchBtn {
   margin-top: 15px;
-  margin-left: 25px;
+  /* margin-left: 25px; */
   background-color: var(--light-green);
   box-shadow: 10px 5px 5px black;
 }
@@ -129,9 +129,11 @@ container#userIngridients {
 #mobile-demo {
   background-color: var(--carrot);
   border: solid 5px white;
-
+  width: 320px;
   text-align: center;
   z-index: 100;
+  padding-top: 30px;
+  height: 100vh;
 }
 
 .sidenav-overlay {
@@ -150,6 +152,8 @@ li.aText {
   /* border: solid black; */
   font-size: 12pt;
   margin: 5px;
+  margin-bottom: 20px;
+  margin-top: 10px;
 }
 /* greeting card for user input of ingredients  */
 .white-text {
@@ -161,4 +165,34 @@ li.aText {
   color: white;
   font-weight: bolder;
   text-shadow: 5px 1px 2px black;
+}
+
+h1 {
+  margin: 5px;
+  margin-bottom: 20px;
+}
+
+@media screen and (min-width: 600px){
+  #cardHolder {
+    width: 50%;
+  }
+
+  #autocomplete-input {
+    /* margin-right: 2rem !important; */
+    margin-left: 1rem !important;
+  }
+}
+
+.small-one {
+  margin-right: 30px;
+  margin-left: 30px;
+}
+
+.big-one {
+  font-size: 150px;
+  margin-top: 25px;
+}
+
+.btn-one {
+  margin-left: 10px;
 }
