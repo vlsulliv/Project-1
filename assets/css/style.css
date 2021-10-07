@@ -71,7 +71,6 @@ nav {
 
 }
 
-
 .card-image {
   max-width: 302px;
   max-height: 200px;
@@ -125,3 +124,19 @@ color: red;
   margin-left: 25px;
   background-color: var(--light-green);
 }
+
+#mobile-demo {
+  background-color: white;
+  text-align: center;
+  z-index: 100;
+}
+
+.sidenav-overlay {
+  z-index: 10;
+  /* opacity: 0 !important; */
+}
+
+#welcomeMsg {
+  color: black;
+}
+
