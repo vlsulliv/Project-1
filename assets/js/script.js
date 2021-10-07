@@ -97,7 +97,10 @@ autocompleteInput.addEventListener("keyup", function () {
 // add event listener for generate button
 generateBtn.addEventListener("click", generateRecipes);
 
+var potentialRecipe;
+
 function generateRecipes() {
+	ourRecipeCards.innerHTML = "";
     buildIngredientsQuery();
     // create dynamic recipe by ingredient api call
     var recipeByIngredient = `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${individual_ingredients}&number=10&ranking=2&apiKey=${apiKey}`;
@@ -107,14 +110,14 @@ function generateRecipes() {
             return response.json();
         })
         .then(function (data) {
-            console.log(data);
+            console.log(data.length);
             // accessing recipes in returned array of data
-            for (var key in data) {
-                console.log(data[`${key}`]);
+            for (var element of data) {
+                console.log(element);
                 // if there are no missing ingredients
-                if (data[`${key}`].missedIngredientCount === 0) {
+                if (element.missedIngredientCount === 0) {
                     // get each potential recipe from api data
-                    var potentialRecipe = data[`${key}`];
+                    potentialRecipe = element;
                     console.log(potentialRecipe.title);
                     // push result onto an array
                     recipeResults.push(potentialRecipe);
@@ -133,10 +136,7 @@ function generateRecipes() {
 				// array of the ingredients used in recipe
                 console.log(recipeResults[i].usedIngredients);
 				usedIngredientsArray = recipeResults[i].usedIngredients;
-            }
-            // loop through the array of results
-            for (var i = 0; i < recipeResults.length; i++) {
-                // get recipe item/object
+				// get recipe item/object
                 var recipeItem = recipeResults[i];
                 // extract recipe ID for nutrition info
                 var recipeID = recipeItem.id;
@@ -144,6 +144,16 @@ function generateRecipes() {
                 console.log(recipeID);
                 recipeNutritionInfo(recipeID);
             }
+            // loop through the array of results
+            // for (var i = 0; i < recipeResults.length; i++) {
+            //     // get recipe item/object
+            //     var recipeItem = recipeResults[i];
+            //     // extract recipe ID for nutrition info
+            //     var recipeID = recipeItem.id;
+            //     // call nutrition info function with recipe ID parameter
+            //     console.log(recipeID);
+            //     recipeNutritionInfo(recipeID);
+            // }
         });
 }
 // create function to display nutrition information for each recipe
@@ -209,7 +219,6 @@ function getRecipeInstructions(ID) {
 }
 // populate recipe cards
 function displayRecipeCards() {
-	ourRecipeCards.innerHTML = "";
 	// create div element for the from of the recipe card
 	var singleRecipeCard = document.createElement('div');
 	singleRecipeCard.setAttribute("class", "card");
