@@ -1,5 +1,7 @@
 // get API key from spoonacular
-var apiKey = "26555838e1c640c8909140566fd58a8e";
+var apiKey1 = "26555838e1c640c8909140566fd58a8e";
+var apiKey = "05cf9b96da3f4148be6fb375f52b09f7";
+
 // get main elements from HTML based on their id
 var ingredientsBox = document.getElementById("userIngredients");
 var generateBtn = document.getElementById("generate-recipe");

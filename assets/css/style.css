@@ -27,10 +27,14 @@ nav {
 
 .ourInputCard {
   background-color: var(--dark-green);
+  
 }
 
 .ourRecipeCards {
+  margin: 0%;
   background-color: var(--carrot);
+  max-width: 250px;
+  max-height: 250px;
 }
 
 #linkToRecipe {
@@ -52,8 +56,17 @@ nav {
   background-position: top;
 }
 
+.card {
+  display: inline-block;
+  margin-left: 80px;
+  margin-top: 14px;
+
+}
+
+
 .card-image {
-  height: 200px;
+  max-width: 302px;
+  max-height: 200px;
 }
 
 ul#cardFooter li{
@@ -86,4 +99,21 @@ container#userIngridients {
 
 .close {
 color: red;
+}
+
+.card-content{
+  background-color: var(--tomato);
+}
+
+#generate-recipe {
+  margin-top: 15px;
+  margin-left: 25px;
+  background-color: var(--tomato);
+
+}
+
+#searchBtn {
+  margin-top: 15px;
+  margin-left: 25px;
+  background-color: var(--light-green);
 }
