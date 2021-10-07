@@ -22,7 +22,15 @@ nav {
 .appLogo {
   font-family: "Marck Script";
   margin-left: 10px;
+  width: 500px;
+  margin-left: 150px;
   /* font-family: 'Vibur', cursive; */
+}
+
+@media screen and (min-width: 993px) {
+  .appLogo {
+    margin-left: 50px;
+  } 
 }
 
 .ourInputCard {
