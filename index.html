@@ -19,6 +19,7 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
     <link rel="stylesheet" href="assets/css/style.css" />
     <title>Project 1 - Recipe App</title>
   </head>
@@ -34,6 +35,7 @@
           <ul class="right hide-on-med-and-down">
             <li><a href="">Find Random Recipes</a></li>
             <li><a href="">Make Grocery List</a></li>
+            <i class="fas fa-bomb small-one"></i>
             <!-- <li><a href="badges.html">Components</a></li>
           <li><a href="collapsible.html">Javascript</a></li>
           <li><a href="mobile.html">Mobile</a></li> -->
@@ -42,9 +44,16 @@
       </nav>
 
       <ul class="sidenav" id="mobile-demo">
-        <p id="welcomeMsg">HELLO WORLD!</p>
-        <li><a href="">Find Random Recipes</a></li>
-        <li><a href="">Make Grocery List</a></li>
+        <h1>Welcome To Your New Home!</h1>
+        <p id="welcomeMsg">
+          So you still haven't decided what to cook yet!? Have you been putting
+          off going to your local store? Say no more, Your in the right place!
+          Dynamite Recipes is an application that helps you find recipes using
+          ingredients that you already have!
+        </p>
+        <li class="aText">Find Random Recipes <em>(coming soon)</em></li>
+        <li class="aText">Make Grocery List <em>(coming soon)</em></li>
+        <i class="fas fa-bomb big-one"></i>
         <!-- <li><a href="badges.html">Components</a></li>
       <li><a href="collapsible.html">Javascript</a></li>
       <li><a href="mobile.html">Mobile</a></li> -->
@@ -53,13 +62,14 @@
     <!--banner-->
     <div id="banner"></div>
     <div class="row">
-      <div class="col s12 m5">
+      <div class="col s12 m5" id="cardHolder">
         <div class="card-panel ourInputCard">
           <span class="white-text"
-            >I am a very simple card. I am good at containing small bits of
-            information. I am convenient because I require little markup to use
-            effectively. I am similar to what is called a panel in other
-            frameworks.
+            >Type your ingredients that you have available to you. After making
+            your choices. "Add" those ingredients, hit the "Get Recipe" button
+            and numerous recipes will be available to you in seconds! If you
+            change your mind, you can click the trash button to delete any of
+            the selected choices.
           </span>
           <div class="row">
             <div class="col s12">
@@ -70,7 +80,7 @@
                     type="text"
                     id="autocomplete-input"
                     class="autocomplete"
-                    placeholder="ex: eggs, milk, chicken, ect."
+                    placeholder="ex: eggs, milk, etc."
                   />
                   <!-- <label for="autocomplete-input"></label> -->
                 </div>
@@ -90,6 +100,7 @@
                 id="generate-recipe"
               >
                 <i class="center">generate recipe</i>
+                <i class="fas fa-bomb btn-one"></i>
               </button>
             </div>
           </div>
