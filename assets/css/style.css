@@ -24,6 +24,8 @@ nav {
   margin-left: 10px;
   width: 500px;
   margin-left: 150px;
+  text-shadow: 4px 5px 2px black;
+
   /* font-family: 'Vibur', cursive; */
 }
 
@@ -106,25 +108,28 @@ container#userIngridients {
 }
 
 .card-content {
-  background-color: var(--tomato);
+  background-color: var(--carrot);
+  box-shadow: 10px 5px 5px black;
 }
 
 #generate-recipe {
   margin-top: 15px;
   margin-left: 25px;
   background-color: var(--tomato);
+  box-shadow: 10px 5px 5px black;
 }
 
 #searchBtn {
   margin-top: 15px;
   margin-left: 25px;
   background-color: var(--light-green);
+  box-shadow: 10px 5px 5px black;
 }
-<<<<<<< HEAD
-=======
 
 #mobile-demo {
-  background-color: white;
+  background-color: var(--carrot);
+  border: solid 5px white;
+
   text-align: center;
   z-index: 100;
 }
@@ -134,8 +139,26 @@ container#userIngridients {
   /* opacity: 0 !important; */
 }
 
-#welcomeMsg {
-  color: black;
+li.aText {
+  color: white;
+  text-decoration: underline;
 }
 
->>>>>>> 1c151b5a355fae8e3c080bd47de6c3f4682cfead
+#welcomeMsg {
+  color: white;
+  text-shadow: 2px 2px 2px black;
+  /* border: solid black; */
+  font-size: 12pt;
+  margin: 5px;
+}
+/* greeting card for user input of ingredients  */
+.white-text {
+  font-size: 14pt;
+  text-shadow: 2px 2px 2px black;
+}
+
+#autocomplete-input {
+  color: white;
+  font-weight: bolder;
+  text-shadow: 5px 1px 2px black;
+}
