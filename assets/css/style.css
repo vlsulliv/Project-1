@@ -120,3 +120,22 @@ container#userIngridients {
   margin-left: 25px;
   background-color: var(--light-green);
 }
+<<<<<<< HEAD
+=======
+
+#mobile-demo {
+  background-color: white;
+  text-align: center;
+  z-index: 100;
+}
+
+.sidenav-overlay {
+  z-index: 10;
+  /* opacity: 0 !important; */
+}
+
+#welcomeMsg {
+  color: black;
+}
+
+>>>>>>> 1c151b5a355fae8e3c080bd47de6c3f4682cfead
