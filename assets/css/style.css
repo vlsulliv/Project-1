@@ -25,14 +25,6 @@ nav {
   width: 500px;
   margin-left: 150px;
   text-shadow: 4px 5px 2px black;
-
-  /* font-family: 'Vibur', cursive; */
-}
-
-@media screen and (min-width: 993px) {
-  .appLogo {
-    margin-left: 50px;
-  }
 }
 
 .ourInputCard {
@@ -65,12 +57,6 @@ nav {
   background-position: top;
 }
 
-/* .card {
-  display: inline-block;
-  margin-left: 80px;
-  margin-top: 14px;
-} */
-
 .card {
   max-width: 400px !important;
   min-width: 400px;
@@ -89,7 +75,6 @@ nav {
 ul#cardFooter li {
   display: inline;
   margin-left: 16px;
-  /* padding: 100px; */
 }
 
 ul#cardFooter {
@@ -101,10 +86,6 @@ ul#cardFooter {
 
 container#userIngridients {
   flex-wrap: wrap;
-  /* margin: 50px;
-  padding: 50px; */
-  /* border: double; */
-  /* position: relative; left: 550px; bottom: 250px; */
   justify-content: flex-start;
   flex-direction: column;
 }
@@ -124,14 +105,12 @@ container#userIngridients {
 
 #generate-recipe {
   margin-top: 15px;
-  /* margin-left: 25px; */
   background-color: var(--tomato);
   box-shadow: 10px 5px 5px black;
 }
 
 #searchBtn {
   margin-top: 15px;
-  /* margin-left: 25px; */
   background-color: var(--light-green);
   box-shadow: 10px 5px 5px black;
 }
@@ -148,7 +127,6 @@ container#userIngridients {
 
 .sidenav-overlay {
   z-index: 10;
-  /* opacity: 0 !important; */
 }
 
 li.aText {
@@ -159,13 +137,12 @@ li.aText {
 #welcomeMsg {
   color: white;
   text-shadow: 2px 2px 2px black;
-  /* border: solid black; */
   font-size: 12pt;
   margin: 5px;
   margin-bottom: 20px;
   margin-top: 10px;
 }
-/* greeting card for user input of ingredients  */
+
 .white-text {
   font-size: 14pt;
   text-shadow: 2px 2px 2px black;
@@ -180,17 +157,6 @@ li.aText {
 h1 {
   margin: 5px;
   margin-bottom: 20px;
-}
-
-@media screen and (min-width: 600px){
-  #cardHolder {
-    width: 50%;
-  }
-
-  #autocomplete-input {
-    /* margin-right: 2rem !important; */
-    margin-left: 1rem !important;
-  }
 }
 
 .small-one {
@@ -211,11 +177,26 @@ h1 {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  /* margin: 50px !important; */
   flex-wrap: wrap;
 }
 
 .activator {
   background-size: cover !important;
   max-width: 400px;
+}
+
+@media screen and (min-width: 600px){
+  #cardHolder {
+    width: 50%;
+  }
+
+  #autocomplete-input {
+    margin-left: 1rem !important;
+  }
+}
+
+@media screen and (min-width: 993px) {
+  .appLogo {
+    margin-left: 50px;
+  }
 }
