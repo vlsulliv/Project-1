@@ -40,7 +40,7 @@ nav {
 }
 
 .ourRecipeCards {
-  margin: 0%;
+  margin: 50px !important;
   background-color: var(--carrot);
   max-width: 250px;
   max-height: 250px;
@@ -65,15 +65,25 @@ nav {
   background-position: top;
 }
 
-.card {
+/* .card {
   display: inline-block;
   margin-left: 80px;
   margin-top: 14px;
+} */
+
+.card {
+  max-width: 400px !important;
+  min-width: 400px;
+  box-shadow: 10px 6px 5px black;
+  margin-left: 25px !important;
+  margin-right: 25px !important;
 }
 
 .card-image {
-  max-width: 302px;
-  max-height: 200px;
+  min-width: 400px !important;
+  max-width: 400px !important;
+  max-height: 300px !important;
+  background-size: contain;
 }
 
 ul#cardFooter li {
@@ -195,4 +205,17 @@ h1 {
 
 .btn-one {
   margin-left: 10px;
+}
+
+#ourRecipeCards {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  /* margin: 50px !important; */
+  flex-wrap: wrap;
+}
+
+.activator {
+  background-size: cover !important;
+  max-width: 400px;
 }
