@@ -12,15 +12,16 @@ deployed date:
 contributors: Damien Luzzo, Christopher Kennard, Chamo, Vincent Sullivan, and Stephanie Cortez
 ```
 
-# Using the App
-<a href="https://i.imgur.com/UTDfY9A"><img src="https://i.imgur.com/UTDfY9A.png" title="Dynamite Recipes" /></a><br/>
-  
-1. Enter ingredient
-2. Submit ingredient
-3. repeat steps for all ingredients
-4. generate your recipes
-   
-* See How To Documentation in app for more info
+# ScreenShots
+Mobile with flyout extended
+<a href="https://i.imgur.com/6Ay0JTf"><img src="https://i.imgur.com/6Ay0JTf.png" title="Dynamite Recipes mobile 000" /></a><br/>
+Mobile Layout
+<a href="https://i.imgur.com/ym25p1C"><img src="https://i.imgur.com/ym25p1C.png" title="Dynamite Recipes mobile 001" /></a><br/>
+Desktop layout
+<a href="https://i.imgur.com/uSa8wZw"><img src="https://i.imgur.com/uSa8wZw.png" title="Dynamite Recipes mobile 001" /></a><br/>
+
+
+* See howTo documentation for Instructions
 
 # Future Features
 - get from steph
