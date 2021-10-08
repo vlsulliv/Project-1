@@ -3,43 +3,33 @@
 // var apiKey = '05cf9b96da3f4148be6fb375f52b09f7';
 // var apiKey = "4a6a04aea236416ab98658ba50b78531";
 var apiKey = "2a64281727af48ea8db7e73091d1ab74" 
-
 // get main elements from HTML based on their id
 var ingredientsBox = document.getElementById('userIngredients');
 var generateBtn = document.getElementById('generate-recipe');
 var autocompleteInput = document.getElementById('autocomplete-input');
 var submitBtn = document.getElementById('searchBtn');
 var ourRecipeCards = document.getElementById('ourRecipeCards');
+var inputField = document.querySelector('.autocomplete');
 // declare global variables
-var autoCompleteListItem, search_value, obj;
+var autoCompleteListItem, potentialRecipe, search_value, obj;
+var recipeImgURL, recipeTitle, calories, carbs, fat, protein, satFat, sugar, sodium, sourceURL, sourceName, recipeTime, usedIngredientsArray;
 // define recipe results and individual ingredients
 var individual_ingredients = '';
 var recipeResults = [];
+var userInputArray = [];
+var autoCompleteOptions = [];
+var recipeCollection = [];
 // create empty array to hold user input values
 var massiveDataStructure = [ Array(), Array(), Array() ];
-var userInputArray = [];
+// access local storage and populate saved ingredients if there is anything in local storage
 var userStorageArray = JSON.parse(localStorage.getItem('userIngredients'));
-
 if (userStorageArray !== null) {
 	userInputArray = userStorageArray;
 	for (var i = 0; i < userInputArray.length; i++) {
 		populateIngredient(userInputArray[i]);
 	}
 }
-// add event listener to submit button
-submitBtn.addEventListener('click', function(e) {
-	e.preventDefault();
-	console.log(autocompleteInput.value);
-	// push user input value onto user input array
-	userInputArray.push(autocompleteInput.value);
-	console.log(userInputArray);
-	// push on array of options it gives us users ingredients we want to store that arrray in local storage
-	localStorage.removeItem('userIngredients');
-	localStorage.setItem('userIngredients', JSON.stringify(userInputArray));
-	populateIngredient(autocompleteInput.value);
-	autocompleteInput.value = '';
-});
-
+// make function to add the ingredient to the ingredient list
 function populateIngredient(ingredient) {
 	// resetting value of user input box
 	var ingredientsBtn = document.createElement('div');
@@ -110,26 +100,7 @@ function buildIngredientsQuery() {
 	}
 	console.log(individual_ingredients);
 }
-
-var inputField = document.querySelector('.autocomplete');
-var autoCompleteOptions = [];
-// create key up event listener for autocomplete input
-autocompleteInput.addEventListener('keyup', function() {
-	console.log(autocompleteInput.value);
-	// set the search value to be the current autocomplete input's value
-	search_value = autocompleteInput.value;
-	// create query string for API call with search value and api key
-	var autoCompleteAPI = `https://api.spoonacular.com/food/ingredients/autocomplete?query=${search_value}&number=15&apiKey=${apiKey}`;
-	// call autocomplete function
-	console.log(autoCompleteAPI);
-	autoCompleteApiCall(autoCompleteAPI);
-});
-// add event listener for generate button
-generateBtn.addEventListener('click', generateRecipes);
-
-var potentialRecipe;
-var recipeCollection = [];
-
+// create function to generate recipes
 function generateRecipes() {
 	ourRecipeCards.innerHTML = '';
 	buildIngredientsQuery();
@@ -160,40 +131,17 @@ function generateRecipes() {
 			// massiveDataStructure.push(recipeResults);
 			for (var i = 0; i < recipeResults.length; i++) {
 				console.log(recipeResults[i]);
-				// // img url
-				// console.log(recipeResults[i].image);
-				// recipeImgURL = recipeResults[i].image;
-				// // title of recipe
-				// console.log(recipeResults[i].title);
-				// recipeTitle = recipeResults[i].title;
-				// // array of the ingredients used in recipe
-				// console.log(recipeResults[i].usedIngredients);
-				// usedIngredientsArray = recipeResults[i].usedIngredients;
 				// get recipe item/object
 				var recipeItem = recipeResults[i];
 				// extract recipe ID for nutrition info
 				var recipeID = recipeItem.id;
-				// call nutrition info function with recipe ID parameter
 				console.log(recipeID);
-
-				// recipeCollection.push(recipeResults[i]);
-
+				// call nutrition info function with recipe ID parameter
 				recipeNutritionInfo(recipeID);
 			}
-			setTimeout(displayRecipeCards,3000); 
-			// loop through the array of results
-			// for (var i = 0; i < recipeResults.length; i++) {
-			//     // get recipe item/object
-			//     var recipeItem = recipeResults[i];
-			//     // extract recipe ID for nutrition info
-			//     var recipeID = recipeItem.id;
-			//     // call nutrition info function with recipe ID parameter
-			//     console.log(recipeID);
-			//     recipeNutritionInfo(recipeID);
-			// }
+			setTimeout(displayRecipeCards,3000);
 		});
 }
-var nutritionArray = [];
 // create function to display nutrition information for each recipe
 function recipeNutritionInfo(ID) {
 	// dynamically access nutrition info API
@@ -207,34 +155,12 @@ function recipeNutritionInfo(ID) {
 			massiveDataStructure[1].push(data);
 			// get access to individual nutrition info data points of concern
 			console.log(data);
-			// console.log(data.calories);
-			// calories = data.calories;
-			// console.log(data.carbs);
-			// carbs = data.carbs;
-			// console.log(data.fat);
-			// fat = data.fat;
-			// console.log(data.protein);
-			// protein = data.protein;
-			// // sat fat
-			// console.log(`${data.bad["2"].title}: ${data.bad["2"].amount}`);
-			// satFat = data.bad["2"].amount;
-			// // sugar
-			// console.log(`${data.bad["4"].title}: ${data.bad["4"].amount}`);
-			// sugar = data.bad["4"].amount;
-			// // sodium
-			// console.log(`${data.bad["6"].title}: ${data.bad["6"].amount}`);
-			// sodium = data.bad["6"].amount;
-			// console.log(`${data.good["15"].title}: ${data.good["15"].amount}`)
-			// console.log(`${data.good["9"].title}: ${data.good["9"].amount}`)
-			// console.log(`${data.good["18"].title}: ${data.good["18"].amount}`)
 			// TODO - They have a "good" array of nutrition info including fiber, iron, etc. (if we want to do that later ... it's kinda complicated)
 		}).then( function(stuff) {
 			getRecipeInstructions(ID)
 		});
 }
-
-var instructionsArray = [];
-
+// create function to get the instructions for the recipe
 function getRecipeInstructions(ID) {
 	var instrAPI = `https://api.spoonacular.com/recipes/${ID}/information?apiKey=${apiKey}`;
 	console.log(instrAPI);
@@ -245,27 +171,11 @@ function getRecipeInstructions(ID) {
 		.then(function(data) {
 			massiveDataStructure[2].push(data);
 			console.log(data);
-			// get source url
-			// console.log(data.sourceUrl);
-			// sourceURL = data.sourceUrl;
-			// console.log(data.sourceName);
-			// sourceName = data.sourceName;
-			// // console.log(data.summary);
-			// recipeSummary = data.summary;
-			// // console.log(data.instructions);
-			// recipeInstr = data.instructions;
-			// // console.log(data.readyInMinutes);
-			// recipeTime = data.readyInMinutes;
 			// TODO - specify food allergies with this API call
-			// displayRecipeCards();
 		});
 }
-
-var recipeImgURL, recipeTitle, calories, carbs, fat, protein, satFat, sugar, sodium, sourceURL, sourceName, recipeTime;
 // populate recipe cards
 function displayRecipeCards() {
-	// massiveDataStructure.push(nutritionArray);
-	// massiveDataStructure.push(instructionsArray);
 	console.log(massiveDataStructure);
 	for (let i = 0; i < massiveDataStructure[0].length; i++) {
 		// create div element for the from of the recipe card
@@ -276,51 +186,25 @@ function displayRecipeCards() {
 		for (let j = 0; j < massiveDataStructure.length; j++) {
 			if (j === 0) {
 				// TODO --> FIRST ITEM IN ARRAY
-				console.log(massiveDataStructure[j][i]);
-				// img url
-				console.log(massiveDataStructure[j][i].image);
+				// get title of recipe, image url, used ingredients
 				recipeImgURL = massiveDataStructure[j][i].image;
-				// title of recipe
-				console.log(massiveDataStructure[j][i].title);
 				recipeTitle = massiveDataStructure[j][i].title;
-				// array of the ingredients used in recipe
-				// console.log(massiveDataStructure[j][i].usedIngredients);
-				// var usedIngredientsArray = massiveDataStructure[j][i].usedIngredients;
+				// usedIngredientsArray = massiveDataStructure[j][i].usedIngredients;
 			} else if (j === 1) {
-				console.log(massiveDataStructure[j][i]);
 				//TODO --> SECOND ITEM IN ARRAY
-				// console.log(massiveDataStructure[j][i].calories);
+				// get calories, carbs, fat, protein, saturated fat, sugar, sodium
 				calories = massiveDataStructure[j][i].calories;
-				// console.log(massiveDataStructure[j][i].carbs);
 				carbs = massiveDataStructure[j][i].carbs;
-				// console.log(massiveDataStructure[j][i].fat);
 				fat = massiveDataStructure[j][i].fat;
-				// console.log(massiveDataStructure[j][i].protein);
 				protein = massiveDataStructure[j][i].protein;
-				// sat fat
-				// console.log(
-				// `${massiveDataStructure[j][i].bad['2'].title}: ${massiveDataStructure[j][i].bad['2'].amount}`
-				// );
 				satFat = massiveDataStructure[j][i].bad['2'].amount;
-				// sugar
-				// console.log(
-				// `${massiveDataStructure[j][i].bad['4'].title}: ${massiveDataStructure[j][i].bad['4'].amount}`
-				// );
 				sugar = massiveDataStructure[j][i].bad['4'].amount;
-				// sodium
-				// console.log(`${massiveDataStructure[j][i].bad['6'].title}: ${massiveDataStructure[j][i].bad['6'].amount}`);
 				sodium = massiveDataStructure[j][i].bad['6'].amount;
 			} else if (j === 2) {
 				// TODO --> THIRD ITEM IN ARRAY
-				// console.log(massiveDataStructure[j][i].sourceUrl);
+				// get sourceURL, sourceName, recipeTime
 				sourceURL = massiveDataStructure[j][i].sourceUrl;
-				// console.log(massiveDataStructure[j][i].sourceName);
 				sourceName = massiveDataStructure[j][i].sourceName;
-				// console.log(massiveDataStructure[j][i].summary);
-				// var recipeSummary = massiveDataStructure[j][i].summary;
-				// // console.log(massiveDataStructure[j][i].instructions);
-				// var recipeInstr = massiveDataStructure[j][i].instructions;
-				// // console.log(massiveDataStructure[j][i].readyInMinutes);
 				recipeTime = massiveDataStructure[j][i].readyInMinutes;
 			}
 			singleRecipeCard.innerHTML = `
@@ -381,138 +265,35 @@ function displayRecipeCards() {
 				</div>
 			</div>`;
 		}
-
-		// add inner HTML to use materialize components
-		// singleRecipeCard.innerHTML = `
-		// <div class="card-image waves-effect waves-block waves-light">
-		// 	<div class="col s12 m5">
-		// 		<img class="activator" src="${recipeImgURL}" />
-		// 	</div>
-		// </div>
-		// <div class="card-content">
-		// 	<span class="card-title activator">${recipeTitle}<i class="material-icons right">more_vert</i></span>
-		// 	<p><a href="${sourceURL}" target="_blank" id="linkToRecipe">See Full Recipe On ${sourceName}</a></p>
-		// </div>
-		// <div class="card-reveal">
-		// 	<span class="card-title">Nutritional Values<i class="material-icons right">close</i></span>
-		// 	<table class="striped">
-		// 		<thead>
-		// 			<tr>
-		// 			<th>Nutrition Facts</th>
-		// 			<th>Amount</th>
-		// 			</tr>
-		// 		</thead>
-		// 		<tbody>
-		// 			<tr>
-		// 				<td>Calories</td>
-		// 				<td id="calVal">${calories}</td>
-		// 			</tr>
-		// 			<tr>
-		// 				<td>Carbs</td>
-		// 				<td id="carbVal">${carbs}</td>
-		// 			</tr>
-		// 			<tr>
-		// 				<td>Fat</td>
-		// 				<td id="fatVal">${fat}</td>
-		// 			</tr>
-		// 			<tr>
-		// 				<td>SaturatedFat</td>
-		// 				<td id="satFatVal">${satFat}</td>
-		// 			</tr>
-		// 			<tr>
-		// 				<td>Protein</td>
-		// 				<td id="proteinVal">${protein}</td>
-		// 			</tr>
-		// 			<tr>
-		// 				<td>Sugar</td>
-		// 				<td id="sugarVal">${sugar}</td>
-		// 			</tr>
-		// 			<tr>
-		// 				<td>Sodium</td>
-		// 				<td id="sodiumVal">${sodium}</td>
-		// 			</tr>
-		// 		</tbody>
-		// 	</table>
-		// 	<div>
-		// 		<ul id="cardFooter">
-		// 			<li class="prepTime">Estimated Prep + Cook Time: ${recipeTime}</li>
-		// 			<li class="sourceName">Source: <a href="${sourceURL}" target="_blank">${sourceName}</a></li>
-		// 		</ul>
-		// 	</div>
-		// </div>`
 	}
 }
-
-// // create div element for the from of the recipe card
-// var singleRecipeCard = document.createElement('div');
-// singleRecipeCard.setAttribute("class", "card");
-// // add inner HTML to use materialize components
-// singleRecipeCard.innerHTML = `
-// 	<div class="card-image waves-effect waves-block waves-light">
-// 		<div class="col s12 m5">
-// 			<img class="activator" src="${recipeImgURL}" />
-// 		</div>
-// 	</div>
-// 	<div class="card-content">
-// 		<span class="card-title activator">${recipeTitle}<i class="material-icons right">more_vert</i></span>
-// 		<p><a href="${sourceURL}" target="_blank" id="linkToRecipe">See Full Recipe On ${sourceName}</a></p>
-// 	</div>
-// 	<div class="card-reveal">
-// 		<span class="card-title">Nutritional Values<i class="material-icons right">close</i></span>
-// 		<table class="striped">
-// 			<thead>
-// 				<tr>
-// 				<th>Nutrition Facts</th>
-// 				<th>Amount</th>
-// 				</tr>
-// 			</thead>
-// 			<tbody>
-// 				<tr>
-// 					<td>Calories</td>
-// 					<td id="calVal">${calories}</td>
-// 				</tr>
-// 				<tr>
-// 					<td>Carbs</td>
-// 					<td id="carbVal">${carbs}</td>
-// 				</tr>
-// 				<tr>
-// 					<td>Fat</td>
-// 					<td id="fatVal">${fat}</td>
-// 				</tr>
-// 				<tr>
-// 					<td>SaturatedFat</td>
-// 					<td id="satFatVal">${satFat}</td>
-// 				</tr>
-// 				<tr>
-// 					<td>Protein</td>
-// 					<td id="proteinVal">${protein}</td>
-// 				</tr>
-// 				<tr>
-// 					<td>Sugar</td>
-// 					<td id="sugarVal">${sugar}</td>
-// 				</tr>
-// 				<tr>
-// 					<td>Sodium</td>
-// 					<td id="sodiumVal">${sodium}</td>
-// 				</tr>
-// 			</tbody>
-// 		</table>
-// 		<div>
-// 			<ul id="cardFooter">
-// 				<li class="prepTime">Estimated Prep + Cook Time: ${recipeTime}</li>
-// 				<li class="sourceName">Source: <a href="${sourceURL}" target="_blank">${sourceName}</a></li>
-// 			</ul>
-// 		</div>
-// 	</div>`
-// 	ourRecipeCards.appendChild(singleRecipeCard);
-// api = '42753b9f905340ec9bec5c347c6f8ebd';
-
+// add event listener to submit button
+submitBtn.addEventListener('click', function(e) {
+	e.preventDefault();
+	// push user input value onto user input array
+	userInputArray.push(autocompleteInput.value);
+	// push on array of options it gives us users ingredients we want to store that arrray in local storage
+	localStorage.removeItem('userIngredients');
+	localStorage.setItem('userIngredients', JSON.stringify(userInputArray));
+	populateIngredient(autocompleteInput.value);
+	autocompleteInput.value = '';
+});
+// add event listener for generate button
+generateBtn.addEventListener('click', generateRecipes);
+// create key up event listener for autocomplete input
+autocompleteInput.addEventListener('keyup', function() {
+	// set the search value to be the current autocomplete input's value
+	search_value = autocompleteInput.value;
+	// create query string for API call with search value and api key
+	var autoCompleteAPI = `https://api.spoonacular.com/food/ingredients/autocomplete?query=${search_value}&number=15&apiKey=${apiKey}`;
+	// call autocomplete function
+	autoCompleteApiCall(autoCompleteAPI);
+});
 // event listener from materialize that opens the side drawer
 document.addEventListener('DOMContentLoaded', function() {
 	var elems = document.querySelectorAll('.sidenav');
 	var instances = M.Sidenav.init(elems);
 });
-
 // event listener for the dropdown
 document.addEventListener('DOMContentLoaded', function() {
 	var elems = document.querySelectorAll('.modal');
