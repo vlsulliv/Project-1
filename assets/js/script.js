@@ -1,8 +1,6 @@
 // get API key from spoonacular
-// var apiKey = '26555838e1c640c8909140566fd58a8e';
-// var apiKey = '05cf9b96da3f4148be6fb375f52b09f7';
-// var apiKey = "4a6a04aea236416ab98658ba50b78531";
-var apiKey = "2a64281727af48ea8db7e73091d1ab74" 
+var apiKey = '26555838e1c640c8909140566fd58a8e';
+var alternativeAPIs = ["05cf9b96da3f4148be6fb375f52b09f7", "4a6a04aea236416ab98658ba50b78531", "2a64281727af48ea8db7e73091d1ab74"];
 // get main elements from HTML based on their id
 var ingredientsBox = document.getElementById('userIngredients');
 var generateBtn = document.getElementById('generate-recipe');
@@ -46,13 +44,14 @@ function populateIngredient(ingredient) {
 	closeIcon.addEventListener('click', function(event) {
 		var newArray = [];
 		for (var element of userInputArray) {
-			console.log(event.target.parentElement.firstChild.textContent);
+			console.log(element);
 			if (element !== event.target.parentElement.firstChild.textContent) {
 				newArray.push(element);
 			}
 			localStorage.removeItem('userIngredients');
 			localStorage.setItem('userIngredients', JSON.stringify(newArray));
 		}
+		userInputArray = newArray;
 	});
 	ingredientsBtn.appendChild(closeIcon);
 	ingredientsBox.appendChild(ingredientsBtn);
@@ -100,19 +99,29 @@ function buildIngredientsQuery() {
 	}
 	console.log(individual_ingredients);
 }
+apiIndex = 0;
 // create function to generate recipes
 function generateRecipes() {
 	ourRecipeCards.innerHTML = '';
+	recipeResults = [];
+	massiveDataStructure = [ Array(), Array(), Array() ];
 	buildIngredientsQuery();
 	// create dynamic recipe by ingredient api call
 	var recipeByIngredient = `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${individual_ingredients}&number=10&ranking=2&apiKey=${apiKey}`;
 	// fetch the recipe based on ingredients from API
 	fetch(recipeByIngredient)
 		.then(function(response) {
-			return response.json();
+			if (response.ok) {
+				return response.json();
+			} else {
+				apiKey = alternativeAPIs[apiIndex];
+				generateRecipes();
+				if (apiIndex < 2) apiIndex++;
+			}
 		})
 		.then(function(data) {
 			console.log(data.length);
+			individual_ingredients = "";
 			// accessing recipes in returned array of data
 			for (var element of data) {
 				console.log(element);
@@ -139,8 +148,11 @@ function generateRecipes() {
 				// call nutrition info function with recipe ID parameter
 				recipeNutritionInfo(recipeID);
 			}
-			setTimeout(displayRecipeCards,3000);
-		});
+			setTimeout(displayRecipeCards,2500);
+		})
+		.catch(function() {
+			alert("OUR API CALLS ARE MAXED OUT FOR THE DAY. PLEASE TRY AGAIN TOMORROW!")
+		})
 }
 // create function to display nutrition information for each recipe
 function recipeNutritionInfo(ID) {
@@ -295,7 +307,13 @@ document.addEventListener('DOMContentLoaded', function() {
 	var instances = M.Sidenav.init(elems);
 });
 // event listener for the dropdown
-document.addEventListener('DOMContentLoaded', function() {
-	var elems = document.querySelectorAll('.modal');
-	var instances = M.Modal.init(elems);
-});
+// document.addEventListener('DOMContentLoaded', function() {
+// 	var elems = document.querySelectorAll('.modal');
+// 	var instances = M.Modal.init(elems);
+// });
+// event listener for language dropdown
+// document.addEventListener('DOMContentLoaded', function() {
+//     var elems = document.querySelectorAll('.dropdown-trigger');
+//     var instances = M.Dropdown.init(elems, alignment="bottom", coverTrigger="false");
+// });
+
