@@ -1,53 +1,55 @@
-var settings = {
-	url: 'https://google-translate1.p.rapidapi.com/language/translate/v2?key=AIzaSyBi6c1JBkPmzh45xH8DRXjD_6P9q0w0zaU',
-	method: 'POST',
-	data: {
-		source: 'en',
-		q: '',
-		target: ''
-	}
-};
+// ! GOOGLE TRANSLATE STUFF
 
-function fetchTranslation() {
-	$.ajax(settings).done(function(response) {
-		console.log(response);
+// var settings = {
+// 	url: 'https://google-translate1.p.rapidapi.com/language/translate/v2?key=AIzaSyBi6c1JBkPmzh45xH8DRXjD_6P9q0w0zaU',
+// 	method: 'POST',
+// 	data: {
+// 		source: 'en',
+// 		q: '',
+// 		target: ''
+// 	}
+// };
 
-		var translatedText = response.data.translations[0].translatedText;
+// function fetchTranslation() {
+// 	$.ajax(settings).done(function(response) {
+// 		console.log(response);
 
-		updatePlaceholders(translatedText);
-		console.log(translatedText);
-	});
-}
+// 		var translatedText = response.data.translations[0].translatedText;
 
-function updateDocumentText(updateString) {
-	console.log(updateString);
+// 		updatePlaceholders(translatedText);
+// 		console.log(translatedText);
+// 	});
+// }
 
-	// $('form > input').each(function(idx) {
-	// 	$(this).prop('placeholder', comp[idx + 1].trim());
-	// });
+// function updateDocumentText(updateString) {
+// 	console.log(updateString);
 
-	// $('#formHeading').html(comp[0]);
-}
+// $('form > input').each(function(idx) {
+// 	$(this).prop('placeholder', comp[idx + 1].trim());
+// });
 
-document.addEventListener('DOMContentLoaded', function() {
-	var dropdowns = document.querySelectorAll('.dropdownItem');
-	for (var element of dropdowns) {
-		element.addEventListener('click', function(e) {
-			if (e.target.getAttribute('tolang') !== 'en') {
-				settings.data.target = e.target.getAttribute('tolang');
-				fetchTranslation();
-				console.log(settings.data.target);
+// $('#formHeading').html(comp[0]);
+// }
 
-				document.getElementById('current-language').innerHTML = e.target.innerHTML;
-			} else {
-				updatePlaceholders(settings.data.q);
-				console.log();
+// document.addEventListener('DOMContentLoaded', function() {
+// 	var dropdowns = document.querySelectorAll('.dropdownItem');
+// 	for (var element of dropdowns) {
+// 		element.addEventListener('click', function(e) {
+// 			if (e.target.getAttribute('tolang') !== 'en') {
+// 				settings.data.target = e.target.getAttribute('tolang');
+// 				fetchTranslation();
+// 				console.log(settings.data.target);
 
-				document.getElementById('langSel').innerHTML = `${e.target.getAttribute('tolang')}`;
-			}
-		});
-	}
-});
+// 				document.getElementById('current-language').innerHTML = e.target.innerHTML;
+// 			} else {
+// 				updatePlaceholders(settings.data.q);
+// 				console.log();
+
+// 				document.getElementById('langSel').innerHTML = `${e.target.getAttribute('tolang')}`;
+// 			}
+// 		});
+// 	}
+// });
 
 // <!-- Dropdown Trigger -->
 // <a class="dropdown-trigger btn langSel" href="#" data-target="dropdown1" id="current-language">English</a>
@@ -59,3 +61,18 @@ document.addEventListener('DOMContentLoaded', function() {
 //     <li class="dropdownItem" tolang="fr">French</li>
 //     <li class="dropdownItem" tolang="de">German</li>
 // </ul>
+
+
+
+
+// TODO other stuff
+// event listener for the dropdown
+// document.addEventListener('DOMContentLoaded', function() {
+// 	var elems = document.querySelectorAll('.modal');
+// 	var instances = M.Modal.init(elems);
+// });
+// event listener for language dropdown
+// document.addEventListener('DOMContentLoaded', function() {
+//     var elems = document.querySelectorAll('.dropdown-trigger');
+//     var instances = M.Dropdown.init(elems, alignment="bottom", coverTrigger="false");
+// });

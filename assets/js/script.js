@@ -44,7 +44,6 @@ function populateIngredient(ingredient) {
 	closeIcon.addEventListener('click', function(event) {
 		var newArray = [];
 		for (var element of userInputArray) {
-			console.log(element);
 			if (element !== event.target.parentElement.firstChild.textContent) {
 				newArray.push(element);
 			}
@@ -70,7 +69,6 @@ function autoCompleteApiCall(autoCompleteAPI) {
 			// push onto list of options array for autocomplete functionality
 			autoCompleteListItem.push(response[i].name);
 		}
-		console.log(autoCompleteListItem);
 		obj = autoCompleteListItem.reduce((a, v) => ({ ...a, [v]: null }), {});
 		var instances = M.Autocomplete.init(inputField, {
 			// we need to make this data dynamic
@@ -90,14 +88,10 @@ function autoCompleteApiCall(autoCompleteAPI) {
 function buildIngredientsQuery() {
 	// loop through the array of user input values
 	for (var i = 0; i < userInputArray.length; i++) {
-		if (i === 0) {
-			//add individual ingredient to query string for api call
-			individual_ingredients = individual_ingredients + userInputArray[i];
-		} else {
-			individual_ingredients = individual_ingredients + ',+' + userInputArray[i];
-		}
+		//add individual ingredient to query string for api call
+		if (i === 0) individual_ingredients = individual_ingredients + userInputArray[i];
+		else individual_ingredients = individual_ingredients + ',+' + userInputArray[i];
 	}
-	console.log(individual_ingredients);
 }
 apiIndex = 0;
 // create function to generate recipes
@@ -120,31 +114,25 @@ function generateRecipes() {
 			}
 		})
 		.then(function(data) {
-			console.log(data.length);
 			individual_ingredients = "";
 			// accessing recipes in returned array of data
 			for (var element of data) {
-				console.log(element);
 				// if there are no missing ingredients
 				if (element.missedIngredientCount === 0) {
 					// get each potential recipe from api data
 					potentialRecipe = element;
-					console.log(potentialRecipe);
 					// push result onto an array
 					recipeResults.push(potentialRecipe);
 					massiveDataStructure[0].push(potentialRecipe);
 				}
 			}
 			// TODO - If we have time, show them recipes they are 1 item away from being able to make
-			console.log(recipeResults);
 			// massiveDataStructure.push(recipeResults);
 			for (var i = 0; i < recipeResults.length; i++) {
-				console.log(recipeResults[i]);
 				// get recipe item/object
 				var recipeItem = recipeResults[i];
 				// extract recipe ID for nutrition info
 				var recipeID = recipeItem.id;
-				console.log(recipeID);
 				// call nutrition info function with recipe ID parameter
 				recipeNutritionInfo(recipeID);
 			}
@@ -166,7 +154,6 @@ function recipeNutritionInfo(ID) {
 		.then(function(data) {
 			massiveDataStructure[1].push(data);
 			// get access to individual nutrition info data points of concern
-			console.log(data);
 			// TODO - They have a "good" array of nutrition info including fiber, iron, etc. (if we want to do that later ... it's kinda complicated)
 		}).then( function(stuff) {
 			getRecipeInstructions(ID)
@@ -175,20 +162,17 @@ function recipeNutritionInfo(ID) {
 // create function to get the instructions for the recipe
 function getRecipeInstructions(ID) {
 	var instrAPI = `https://api.spoonacular.com/recipes/${ID}/information?apiKey=${apiKey}`;
-	console.log(instrAPI);
 	fetch(instrAPI)
 		.then(function(response) {
 			return response.json();
 		})
 		.then(function(data) {
 			massiveDataStructure[2].push(data);
-			console.log(data);
 			// TODO - specify food allergies with this API call
 		});
 }
 // populate recipe cards
 function displayRecipeCards() {
-	console.log(massiveDataStructure);
 	for (let i = 0; i < massiveDataStructure[0].length; i++) {
 		// create div element for the from of the recipe card
 		var singleRecipeCard = document.createElement('div');
@@ -306,14 +290,3 @@ document.addEventListener('DOMContentLoaded', function() {
 	var elems = document.querySelectorAll('.sidenav');
 	var instances = M.Sidenav.init(elems);
 });
-// event listener for the dropdown
-// document.addEventListener('DOMContentLoaded', function() {
-// 	var elems = document.querySelectorAll('.modal');
-// 	var instances = M.Modal.init(elems);
-// });
-// event listener for language dropdown
-// document.addEventListener('DOMContentLoaded', function() {
-//     var elems = document.querySelectorAll('.dropdown-trigger');
-//     var instances = M.Dropdown.init(elems, alignment="bottom", coverTrigger="false");
-// });
-
