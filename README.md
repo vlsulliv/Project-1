@@ -17,13 +17,13 @@ To use the Application just go to the Website link below. The Application is Des
 ## ScreenShots
 ---
 #### Mobile With Sidebar Extended
-![Mobile View With Sidebar](https://i.imgur.com/6Ay0JTf.png)
+![Mobile View With Sidebar](https://imgur.com/K8aMpTS)
 ---
 #### Mobile Layout
-![Mobile View Without Sidebar](https://i.imgur.com/ym25p1C.png)
+![Mobile View Without Sidebar](https://imgur.com/OWYqKgO)
 ---
 #### Desktop layout
-![Desktop View](https://i.imgur.com/uSa8wZw.png)
+![Desktop View](https://imgur.com/wf9eaQY)
 ---
 * See How-To documentation for Instructions
 ---
